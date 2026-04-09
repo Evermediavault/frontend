@@ -84,14 +84,14 @@ export default function Home() {
           }`}
         >
           <h1 className="font-poppins font-medium text-[40px] md:text-[48px] lg:text-[56px] leading-[45px] md:leading-[55px] lg:leading-[65px] tracking-[0.15px] text-center text-transparent bg-clip-text bg-gradient-to-r from-[#fff] via-[#7CC9FF] to-[#fff] animate-gradient mb-6 drop-shadow-2xl">
-            A collaborative data alliance
+            Turn Real Web3 Data into
             <br />
-            <span className="">for the AI and decentralized era</span>
+            <span className="">Trusted Knowledge</span>
           </h1>
           <p className="text-gray-400 text-base md:text-lg mb-8 max-w-2xl mx-auto mt-[8px] md:mt-[16px] leading-relaxed font-light ">
-            Data should not merely be stored — it should be activated, enhanced,
-            and preserved through collaboration. EverMedia Vault is the alliance
-            that brings this transformation to life.
+            EverMedia Vault helps projects anchor authentic data into verifiable
+            records, building a shared knowledge layer for communities, users, and
+            intelligent systems.
           </p>
           <button className="btn-ripple px-8 py-3 bg-gradient-to-r from-[#0A4DD3] to-[#06BAD9] hover:from-[#0A4DD3] hover:to-[#08D0F0] text-white font-medium rounded-full transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/60 animate-pulse-glow">
             Join the Alliance
@@ -131,24 +131,19 @@ export default function Home() {
             {/* Copy */}
             <div className="col-span-12 md:col-span-7 space-y-2 md:space-y-2 text-white/70 font-poppins font-light text-sm sm:text-base md:text-lg leading-relaxed md:leading-loose tracking-normal md:tracking-wide order-2 md:order-1">
               <p>
-                In the era of AI and decentralized computation, data should not
-                merely be stored — it should be activated, enhanced, and
-                preserved through collaboration. EverMedia Vault provides the
-                platform where this transformation happens.
+                EverMedia Vault helps Web3 projects turn scattered content,
+                research, archives, and records into verifiable, structured
+                knowledge.
               </p>
               <p>
-                We connect creators, institutions, and Web3 projects within a
-                shared ecosystem that gives data new life — making it usable,
-                discoverable, and meaningful.
+                Rather than leaving important data fragmented across platforms,
+                the Vault anchors it into trusted records that can be preserved,
+                understood, and discovered over time.
               </p>
               <p>
-                Through our alliance, members gain access to free decentralized
-                storage, global media exposure, and strategic collaborations
-                that unlock the long-term potential of their data.
-              </p>
-              <p>
-                Together, we are building a world where data lives, grows, and
-                transcends
+                Through a shared alliance of contributors, members do not simply
+                store information — they build a verified presence within a
+                growing Web3 knowledge network.
               </p>
             </div>
           </div>
@@ -178,20 +173,20 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                title: 'Activation',
-                desc: 'Data is no longer static — it’s awakened through decentralized collaboration',
+                title: 'Verification',
+                desc: 'Real records are anchored into verifiable storage, turning content into trusted digital proof.',
                 image: '/images/aboutUs-part1.png',
                 delay: '0s',
               },
               {
-                title: 'Legacy',
-                desc: 'Every dataset, media work, and record contributes to humanity’s shared digital heritage',
+                title: 'Structure',
+                desc: 'Data is not only preserved, but organized into meaningful records that can be indexed, connected, and understood.',
                 image: '/images/aboutUs-part2.png',
                 delay: '0.2s',
               },
               {
-                title: 'Empowerment',
-                desc: 'Members gain tools, visibility, and ecosystem access to unlock their data’s potential',
+                title: 'Visibility',
+                desc: 'Members gain lasting presence across the alliance, with future pathways toward intelligent discovery and structured exposure.',
                 image: '/images/aboutUs-part3.png',
                 delay: '0.4s',
               },
@@ -236,14 +231,19 @@ export default function Home() {
               <h2 className="text-3xl md:text-5xl font-bold mb-12">Vision</h2>
               <div className="space-y-12 text-white/70 font-poppins font-light text-[16px] md:text-[18px] leading-[28px] md:leading-[36px] tracking-normal md:tracking-[0.14px]">
                 <p>
-                  We envision a future where data becomes a living ecosystem
-                  —one that connects people, AI, and decentralized networks into
-                  a collective intelligence.
+                  We envision a Web3 ecosystem where trustworthy data does not
+                  remain fragmented, but becomes the foundation for discovery,
+                  collaboration, and intelligence.
                 </p>
                 <p>
-                  Through openness, collaboration, and permanence, EverMedia
-                  Vault empowers humanity to preserve its digital heritage and
-                  shape the next era of data civilization.
+                  EverMedia Vault is building that foundation by turning verifiable
+                  records into a shared layer of structured knowledge across the
+                  alliance.
+                </p>
+                <p>
+                  With indexing and search built into the system, data moves beyond
+                  storage — becoming easier to discover, interpret, and use over
+                  time.
                 </p>
               </div>
             </div>
@@ -286,28 +286,28 @@ export default function Home() {
             Join the Alliance
           </h2>
           <p className="text-gray-400 text-center mb-16 max-w-3xl mx-auto font-poppins font-normal text-[18px] md:text-[20px] leading-[26px] md:leading-[28px] tracking-normal">
-            Joining EverMedia Vault means more than just storing data —it’s
-            about becoming part of a network that unlocks shared value
+            Joining EverMedia Vault means more than preserving data — it means
+            contributing to a network where records become verifiable, searchable,
+            and meaningfully connected.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             {[
               {
                 image: '/images/join-part1.png',
-                title: 'Free decentralized storage allocation',
+                title: 'Verifiable record anchoring',
               },
               {
                 image: '/images/join-part2.png',
-                title: 'Media exposure and brand collaborations',
+                title: 'Structured project presence',
               },
               {
                 image: '/images/join-part3.png',
-                title: 'Strategic partnerships and event participation',
+                title: 'Searchable discovery across the network',
               },
               {
                 image: '/images/join-part4.png',
-                title:
-                  'Access to AI-driven data analytics and conversion tools',
+                title: 'Access to a growing Web3 knowledge ecosystem',
               },
             ].map((item, index) => (
               <div

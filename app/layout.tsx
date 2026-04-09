@@ -9,9 +9,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'EverMedia Vault - A Collaborative Data Alliance',
+  title: 'EverMedia Vault - Turn Real Web3 Data into Trusted Knowledge',
   description:
-    'A collaborative data alliance for the AI and decentralized era. Data should not merely be stored — it should be activated, enhanced, and leveraged through collaboration.',
+    'Turn Real Web3 Data into Trusted Knowledge. EverMedia Vault helps projects anchor authentic data into verifiable records, building a shared knowledge layer for communities, users, and intelligent systems.',
   keywords: 'Web3, Data Alliance, AI, Decentralized, Blockchain, Data Storage',
 };
 
