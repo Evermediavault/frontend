@@ -226,8 +226,8 @@ export default function Home() {
         }`}
       >
         <div className="container mx-auto max-w-7xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
+            <div className="relative z-10 min-w-0 md:pr-4">
               <h2 className="text-3xl md:text-5xl font-bold mb-12">Vision</h2>
               <div className="space-y-12 text-white/70 font-poppins font-light text-[16px] md:text-[18px] leading-[28px] md:leading-[36px] tracking-normal md:tracking-[0.14px]">
                 <p>
@@ -247,13 +247,13 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="flex justify-center">
-              <div className="relative w-80 h-80 md:w-[500px] md:h-[427px] scale-150">
+            <div className="relative z-0 flex min-w-0 justify-center md:justify-end overflow-hidden md:overflow-visible">
+              <div className="relative h-96 w-96 shrink-0 md:h-[520px] md:w-[min(100%,600px)] md:max-w-[600px] lg:h-[560px] lg:max-w-[min(100%,640px)] md:origin-left md:scale-[1.12] lg:scale-[1.18]">
                 <Image
                   src="/images/vision-part.png"
                   alt="Vision"
                   fill
-                  className="object-contain"
+                  className="object-contain object-right"
                 />
               </div>
             </div>

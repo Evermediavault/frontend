@@ -593,7 +593,7 @@ export default function AllianceOrbit() {
                         rel="noopener noreferrer"
                         className="inline-flex min-h-[40px] min-w-[120px] flex-1 items-center justify-center gap-2 rounded-xl border border-white/15 bg-[#1c1a26] px-4 py-2.5 text-sm font-medium text-gray-200 transition-all hover:border-[rgba(124,201,255,0.35)] hover:bg-[rgba(124,201,255,0.08)] hover:text-[#7CC9FF] sm:flex-initial"
                       >
-                        Twitter
+                        X
                         <span className="text-xs opacity-90">↗</span>
                       </a>
                     )}

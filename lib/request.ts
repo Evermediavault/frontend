@@ -2,8 +2,7 @@
  * HTTP client: shared base URL, timeout, and error handling.
  */
 
-import { getApiBaseURL } from '../config/api';
-import { API_TIMEOUT_MS } from '../config/api';
+import { getApiBaseURL, CONTACT_PATH, API_TIMEOUT_MS } from '../config/api';
 
 export interface ApiPaginatedResponse<T> {
   success: boolean;
@@ -40,15 +39,19 @@ export interface MediaListItem {
   uploader_username?: string;
 }
 
-/** Perform a GET request. */
-async function request<T>(path: string, options?: RequestInit): Promise<T> {
+function buildApiUrl(path: string): string {
   const baseURL = getApiBaseURL();
   if (!baseURL) {
     throw new Error(
       'API base URL is not configured. Set NEXT_PUBLIC_API_BASE_URL (e.g. http://127.0.0.1:8000 for local dev).',
     );
   }
-  const url = `${baseURL.replace(/\/$/, '')}${path.startsWith('/') ? path : `/${path}`}`;
+  return `${baseURL.replace(/\/$/, '')}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+/** Perform a GET request. */
+async function request<T>(path: string, options?: RequestInit): Promise<T> {
+  const url = buildApiUrl(path);
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT_MS);
 
@@ -70,6 +73,62 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
     if (e instanceof Error) throw e;
     throw new Error(String(e));
   }
+}
+
+/** POST JSON body; throws Error with server `message` when not ok. */
+export async function postJson<T>(path: string, body: Record<string, unknown>): Promise<T> {
+  const url = buildApiUrl(path);
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT_MS);
+
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+    const parsed: { message?: string } = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      const msg =
+        typeof parsed?.message === 'string' && parsed.message.length > 0
+          ? parsed.message
+          : `HTTP ${res.status}`;
+      throw new Error(msg);
+    }
+    return parsed as T;
+  } catch (e) {
+    clearTimeout(timeoutId);
+    if (e instanceof Error) throw e;
+    throw new Error(String(e));
+  }
+}
+
+/** Contact Us — POST /contact (public). */
+export interface ContactSubmitPayload {
+  user_name: string;
+  email: string;
+  content: string;
+}
+
+export interface ContactSubmitResponse {
+  success: true;
+  message: string;
+  data: {
+    id: number;
+    created_at: string;
+  };
+}
+
+export async function submitContact(
+  payload: ContactSubmitPayload,
+): Promise<ContactSubmitResponse> {
+  return postJson<ContactSubmitResponse>(CONTACT_PATH, {
+    user_name: payload.user_name,
+    email: payload.email,
+    content: payload.content,
+  });
 }
 
 /** Public paginated alliance members list. */
