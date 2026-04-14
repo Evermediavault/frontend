@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { getAllianceMembers, type AllianceMemberItem } from '../../lib/request';
+import { toUserFacingError } from '../../lib/userFacingError';
 
 const W = 560;
 const H = 560;
@@ -131,7 +132,7 @@ export default function AllianceOrbit() {
         if (res.success && Array.isArray(res.data)) setMembers(res.data);
       })
       .catch((e) => {
-        setError(e instanceof Error ? e.message : 'Request failed');
+        setError(toUserFacingError(e));
         setMembers([]);
       })
       .finally(() => setLoading(false));

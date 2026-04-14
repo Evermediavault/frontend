@@ -4,6 +4,7 @@
 'use client';
 
 import Header from './components/Header';
+import PartnersSection from './components/PartnersSection';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
@@ -23,7 +24,7 @@ export default function Home() {
     about: useRef(null),
     vision: useRef(null),
     join: useRef(null),
-    partners: useRef(null),
+    partners: useRef<HTMLElement | null>(null),
   };
 
   useEffect(() => {
@@ -337,59 +338,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Partners Section */}
-      <section
-        ref={sectionRefs.partners}
-        className={`relative -top-48  px-4 transition-all duration-1000 ${
-          isVisible.partners
-            ? 'opacity-100 translate-y-0'
-            : 'opacity-0 translate-y-10'
-        }`}
-      >
-        <div className="container mx-auto max-w-7xl">
-          <h2 className="text-3xl md:text-5xl font-bold mb-12">Partners</h2>
-
-          {/* Tabs */}
-          <div className="flex gap-8 mb-12 border-b border-gray-800">
-            <button className="text-blue-400 border-b-2 border-blue-400 pb-3 font-medium">
-              Strategic Partners
-            </button>
-            <button className="text-gray-400 hover:text-white pb-3 font-medium transition-colors">
-              Tech Partners
-            </button>
-            <button className="text-gray-400 hover:text-white pb-3 font-medium transition-colors">
-              Data Partners
-            </button>
-          </div>
-
-          {/* Partner logos */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {[
-              'Monday Protocol',
-              'Sociogram',
-              'Redstone',
-              'GreenField',
-              'Fil-Journal',
-              'Icon',
-              'L2',
-              'C',
-              'Github',
-              'Bsens',
-              'Airfare',
-              'Bifrost',
-            ].map((partner, index) => (
-              <div
-                key={index}
-                className="glass-card p-6 rounded-xl flex items-center justify-center h-24 hover:scale-105 transition-all duration-300 hover:border-blue-500/50"
-              >
-                <span className="text-gray-400 text-sm font-medium">
-                  {partner}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PartnersSection
+        sectionRef={sectionRefs.partners}
+        isVisible={isVisible.partners}
+      />
     </div>
   );
 }

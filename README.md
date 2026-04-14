@@ -51,7 +51,7 @@ If `NEXT_PUBLIC_API_BASE_URL` is unset in the browser on `localhost` / `127.0.0.
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The dev server proxies page navigation; API calls go to the configured backend origin.
+Open [http://localhost:3001](http://localhost:3001). The dev server proxies page navigation; API calls go to the configured backend origin.
 
 ### Production build (static export)
 

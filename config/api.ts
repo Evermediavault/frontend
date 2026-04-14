@@ -16,6 +16,12 @@ export const ALLIANCE_MEMBERS_PATH = '/alliance/members';
 /** Contact Us form submission (public POST). */
 export const CONTACT_PATH = '/contact';
 
+/** Partners (public GET). */
+export const PARTNERS_PATH = '/partners';
+
+/** Distinct partner tags (public GET). */
+export const PARTNERS_TAGS_PATH = '/partners/tags';
+
 /** Full API base URL: origin + API_V1_PATH. */
 export function getApiBaseURL(): string {
   const origin = getApiBaseUrl();

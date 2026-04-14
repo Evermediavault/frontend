@@ -1,32 +1,34 @@
 /**
  * Site header and navigation.
  */
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function Header() {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '#' },
-    { name: 'Ecosystem', href: '/ecosystem' },
-    { name: 'Vault Records', href: '/vault-records' },
-    { name: 'News', href: '#' },
+    { name: "Home", href: "/" },
+    { name: "FAQ", href: "/faq" },
+    { name: "Ecosystem", href: "/ecosystem" },
+    { name: "Vault Records", href: "/vault-records" },
+    { name: "News", href: "#" },
   ];
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [mobileMenuOpen]);
 
@@ -55,15 +57,24 @@ export default function Header() {
 
               {/* Desktop Navigation */}
               <nav className="hidden lg:flex items-center gap-8">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="text-gray-300 hover:text-white text-sm font-medium transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+                {navItems.map((item) => {
+                  const active =
+                    item.href !== "#" &&
+                    (item.href === "/"
+                      ? pathname === "/"
+                      : pathname === item.href || pathname.startsWith(`${item.href}/`));
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`text-sm font-medium transition-colors ${
+                        active ? "text-white" : "text-gray-300 hover:text-white"
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  );
+                })}
               </nav>
             </div>
 
@@ -116,7 +127,7 @@ export default function Header() {
       {/* Mobile drawer */}
       <div
         className={`fixed top-0 right-0 h-full w-64 bg-[#0B0711] shadow-2xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out ${
-          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
@@ -145,16 +156,25 @@ export default function Header() {
 
           {/* Nav links */}
           <nav className="flex flex-col gap-1 px-4 flex-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-gray-300 hover:text-white hover:bg-white/5 text-base font-medium transition-all py-3 px-4 rounded-lg"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const active =
+                item.href !== "#" &&
+                (item.href === "/"
+                  ? pathname === "/"
+                  : pathname === item.href || pathname.startsWith(`${item.href}/`));
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`hover:bg-white/5 text-base font-medium transition-all py-3 px-4 rounded-lg ${
+                    active ? "text-white bg-white/5" : "text-gray-300 hover:text-white"
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* CTA */}

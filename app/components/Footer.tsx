@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useCallback, useState } from 'react';
 import ContactFeedbackModal from './ContactFeedbackModal';
 import { submitContact } from '../../lib/request';
+import { toUserFacingError } from '../../lib/userFacingError';
 
 type FeedbackState = {
   open: boolean;
@@ -79,15 +80,11 @@ export default function Footer() {
           'Your message has been sent. We will get back to you as soon as possible.',
       });
     } catch (err) {
-      const msg =
-        err instanceof Error
-          ? err.message
-          : 'Something went wrong. Please try again later.';
       setFeedback({
         open: true,
         variant: 'error',
         title: 'Could not send',
-        message: msg,
+        message: toUserFacingError(err),
       });
     } finally {
       setSubmitting(false);
@@ -107,7 +104,7 @@ export default function Footer() {
       <div className="container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-12">
           {/* Contact Form - Left Side */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5" id="footer-contact">
             <div className="flex items-center gap-3 mb-8">
               <Image
                 src="/images/logo.png"

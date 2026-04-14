@@ -13,6 +13,7 @@ import ProofCard, {
 } from '../components/ProofCard';
 import VaultRecordDetailModal from '../components/VaultRecordDetailModal';
 import { getMediaList, type MediaListItem } from '../../lib/request';
+import { toUserFacingError } from '../../lib/userFacingError';
 
 function formatDisplayDate(iso: string, mode: 'date' | 'datetime' = 'date'): string {
   try {
@@ -98,7 +99,7 @@ export default function VaultRecordsPage() {
         setRecords(res.data.map((item) => mapMediaItemToProofRecord(item)));
       })
       .catch((e) => {
-        if (!cancelled) setError(e instanceof Error ? e.message : String(e));
+        if (!cancelled) setError(toUserFacingError(e));
       })
       .finally(() => {
         if (!cancelled) setLoading(false);
