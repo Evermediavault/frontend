@@ -19,6 +19,8 @@ export type VaultDisplayStatus = 'featured' | 'anchored' | 'verified' | 'pending
 
 export interface ProofRecord {
   category: string;
+  /** Present when the media row has category_uid — used for vault-records filters. */
+  categoryUid?: string;
   recordType: VaultRecordType;
   displayStatus: VaultDisplayStatus;
   status: ProofRecordStatus;

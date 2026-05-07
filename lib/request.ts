@@ -195,11 +195,67 @@ export async function getAllianceMembers(params?: { page?: number; page_size?: n
   return request<ApiPaginatedResponse<AllianceMemberItem>>(path);
 }
 
-/** Public paginated media / proof list. */
-export async function getMediaList(params?: { page?: number; page_size?: number }): Promise<ApiPaginatedResponse<MediaListItem>> {
+/** Category list item (GET /categories). */
+export interface CategoryListItem {
+  id: number;
+  uid: string;
+  name: string;
+  description: string | null;
+  is_default: boolean;
+  created_at: string;
+  file_count: number;
+}
+
+/** Public paginated categories list. */
+export async function getCategoryList(params?: {
+  page?: number;
+  page_size?: number;
+  sort_by?: 'created_at' | 'name';
+  order?: 'asc' | 'desc';
+}): Promise<ApiPaginatedResponse<CategoryListItem>> {
   const sp = new URLSearchParams();
   if (params?.page != null) sp.set('page', String(params.page));
   if (params?.page_size != null) sp.set('page_size', String(params.page_size));
+  if (params?.sort_by != null) sp.set('sort_by', params.sort_by);
+  if (params?.order != null) sp.set('order', params.order);
+  const query = sp.toString();
+  const path = `/categories${query ? `?${query}` : ''}`;
+  return request<ApiPaginatedResponse<CategoryListItem>>(path);
+}
+
+/** Synapse storage provider row from GET /media/storage-info. */
+export interface MediaStorageProviderItem {
+  id: number;
+  name: string;
+  description: string;
+  isActive: boolean;
+  serviceProvider: string;
+  pdp: { serviceURL: string };
+}
+
+/** Public storage providers list (for upload / filters). */
+export async function getMediaStorageInfo(): Promise<{ providers: MediaStorageProviderItem[] }> {
+  const body = await request<ApiSuccessResponse<{ providers: MediaStorageProviderItem[] }>>('/media/storage-info');
+  const providers = body?.data?.providers;
+  return { providers: Array.isArray(providers) ? providers : [] };
+}
+
+/** Public paginated media / proof list. */
+export async function getMediaList(params?: {
+  page?: number;
+  page_size?: number;
+  word?: string;
+  storage_id?: number;
+}): Promise<ApiPaginatedResponse<MediaListItem>> {
+  const sp = new URLSearchParams();
+  if (params?.page != null) sp.set('page', String(params.page));
+  if (params?.page_size != null) sp.set('page_size', String(params.page_size));
+  if (params?.word != null && params.word.trim() !== '') {
+    sp.set('word', params.word.trim().slice(0, 128));
+  }
+  if (params?.storage_id != null && Number.isFinite(params.storage_id)) {
+    sp.set('storage_id', String(params.storage_id));
+  }
   const query = sp.toString();
   const path = `/media/list${query ? `?${query}` : ''}`;
   return request<ApiPaginatedResponse<MediaListItem>>(path);
