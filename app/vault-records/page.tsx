@@ -292,14 +292,11 @@ export default function VaultRecordsPage() {
           }`}
         >
           <div className="mx-auto max-w-[1280px] px-0 md:px-4">
-            <div className="border-b border-white/[0.07] pb-9 pt-10">
-              <h2 className="font-poppins text-[28px] font-bold leading-tight tracking-tight text-white md:text-[34px]">
-                Vault Records
-              </h2>
+            <div className="pb-6 pt-10">
               <label htmlFor="vault-records-search" className="sr-only">
                 Search records by name, type, contributor, or CID keywords
               </label>
-              <div className="relative mt-4 w-full md:mt-5">
+              <div className="relative w-full">
                 <svg
                   className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[rgba(240,240,255,0.35)]"
                   xmlns="http://www.w3.org/2000/svg"
@@ -329,7 +326,7 @@ export default function VaultRecordsPage() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 py-5">
+            <div className="flex flex-col gap-4 border-b border-white/[0.07] pb-9 pt-2">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-3">
                 <span className="shrink-0 pt-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-[rgba(240,240,255,0.32)]">
                   Category
@@ -427,6 +424,7 @@ export default function VaultRecordsPage() {
               </div>
             </div>
 
+            <div className="mt-8">
             {error && (
               <p className="mb-6 text-center text-red-400" role="alert">
                 {error}
@@ -466,6 +464,7 @@ export default function VaultRecordsPage() {
                 )}
               </div>
             )}
+            </div>
           </div>
         </section>
       </div>
